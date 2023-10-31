@@ -5,13 +5,13 @@ import java.awt.event.MouseEvent;
 
 public class Button extends JComponent {
 
-    private final Rect rectA, recta, rect0, rectSP, button,copyButton,closeButton;
-    private final Font font = new Font("Broadway", Font.PLAIN, 20);
+    private final Rect rectA, recta, rect0, rectSP, button, copyButton, closeButton;
+    private final Font font = new Font("Imprint MT Shadow", Font.PLAIN, 20);
     private final BasicStroke stroke = new BasicStroke(2);
 
     public boolean isA, isa = true, is0, isSp;
     GradientPaint gp = new GradientPaint(0, 0, Color.GREEN, 240, 120, Color.ORANGE);
-    GradientPaint gpCopy = new GradientPaint(20, 188, Color.decode("#16ff83"), 160, 220, Color.decode("#00d4ff"));
+    GradientPaint gpCopy = new GradientPaint(20, 188, Color.decode("#1A2980"), 240, 220, Color.decode("#26d0ce"));
     GradientPaint gpCheck = new GradientPaint(0, 0, Color.BLUE, 240, 120, Color.YELLOW);
 
     public Button(OnClick onClick) {
@@ -40,7 +40,7 @@ public class Button extends JComponent {
                 if (rectA.contains(e.getX(), e.getY())) isA = !isA;
                 if (rectSP.contains(e.getX(), e.getY())) isSp = !isSp;
 
-                if (copyButton.contains(e.getX(), e.getY()))  onClick.onCopy();
+                if (copyButton.contains(e.getX(), e.getY())) onClick.onCopy();
                 if (closeButton.contains(e.getX(), e.getY())) onClick.onClose();
 
 
@@ -72,7 +72,6 @@ public class Button extends JComponent {
         g.drawOval(140, 90, 20, 20);
 
 
-
         if (isA)
             g.fillOval(28, 30, 20, 20);
         if (isa)
@@ -86,8 +85,8 @@ public class Button extends JComponent {
 
 
         g.drawString("A-Z", 60, 47);
-        g.drawString("a-z", 170, 47);
-        g.drawString("0-9", 60, 105);
+        g.drawString("a-z", 170, 45);
+        g.drawString("0-9", 60, 107);
         g.drawString("SP", 170, 105);
 
         g.setPaint(gp);
@@ -96,25 +95,27 @@ public class Button extends JComponent {
 
 
         g.setColor(Color.BLACK);
-        g.drawString("BUTTON", 82, 162);
+        g.drawString("GENERATE", 62, 162);
 
         //close button
         g.setColor(Color.RED);
-        g.fillOval(180,188,32,32);
+        g.fillOval(180, 188, 32, 32);
 
 
         g.setPaint(gpCopy);
         g.fillRoundRect(copyButton.left, copyButton.top, copyButton.width(), copyButton.height(), 32, 32);
         g.setColor(Color.WHITE);
-        g.drawString("COPY",64, copyButton.bottom-10);
+        g.drawString("COPY", 64, copyButton.bottom - 10);
 
-        g.drawLine(190,198,202,210);
-        g.drawLine(202,198,190,210);
+        g.drawLine(190, 198, 202, 210);
+        g.drawLine(202, 198, 190, 210);
     }
 
     public interface OnClick {
         void onClick();
+
         void onClose();
+
         void onCopy();
     }
 
